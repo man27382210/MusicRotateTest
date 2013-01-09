@@ -26,7 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	// Do any additional setup after loading the view
+    self.view.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,6 +38,12 @@
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     id appDelegate = [[UIApplication sharedApplication]delegate];
-    [[appDelegate window]setRootViewController:[[appDelegate arrayOfViewController]objectAtIndex:0]];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.view.alpha = 0;
+    } completion:^(BOOL finished) {
+        self.view.alpha = 1;
+        [[appDelegate window]setRootViewController:[[appDelegate arrayOfViewController]objectAtIndex:0]];
+
+    }];
 }
 @end
